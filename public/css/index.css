@@ -1,0 +1,38 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  --page-bg-color: #eee;
+  --page-text-color: #000;
+}
+
+body.dark-theme {
+  --page-bg-color: #333;
+  --page-text-color: rgba(224, 224, 224, 1.0);
+}
+
+body {
+  background-color: var(--page-bg-color);
+  color: var(--page-text-color);
+}
+
+ul.profiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-indent: none;
+}
+ul.profiles li {
+  float: left;
+  border: 1px solid #ccc;
+  padding: 4px;
+  margin: 4px;
+  flex-grow: 1;
+  flex-basis: 15%;
+}
+ul.profiles li img {
+  display: block;
+  width: 128px;
+  height: 128px
+}

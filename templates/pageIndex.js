@@ -8,30 +8,6 @@ export default ({ site = {}, page = {}, profiles = [] }) =>
       site,
       page,
       head: html`
-        <style>
-          ul.profiles {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            text-indent: none;
-
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: stretch;
-            align-content: stretch;
-          }
-          ul.profiles li {
-            border: 1px solid #ccc;
-            padding: 4px;
-            flex-grow: 1;
-            flex-basis: 15%;
-          }
-          ul.profiles li img {
-            display: block;
-            width: 128px;
-          }
-        </style>
       `,
     },
     html`

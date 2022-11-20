@@ -1,7 +1,7 @@
 import { html } from "../lib/html.js";
 
 export default (
-  { site = {}, page = {}, head = "", js = "" },
+  { site = {}, page = {}, head = "" },
   content
 ) => html`
   <!DOCTYPE html>
@@ -15,11 +15,17 @@ export default (
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
       />
+      <link rel="stylesheet" href="/css/index.css" />
       ${head}
     </head>
     <body>
+      <header>
+        <nav>
+          <button class="toggle-theme">theme</button>
+        </nav>
+      </header>
       ${content}
-      ${js}
+      <script type="module" src="/js/index.js"></script>
     </body>
   </html>
 `;

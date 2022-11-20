@@ -9,7 +9,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node index.js build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npx reload -d build",
+    "watch:build": "onchange -v -i -p 1000 index.js 'public/**/*' 'lib/**/*.js' -- npm run build",
+    "dev": "npm-run-all -p server watch:build"
   },
   "author": "",
   "license": "ISC",
@@ -29,7 +33,9 @@
     "onchange": "^7.1.0",
     "p-queue": "^7.3.0",
     "recursive-copy": "^2.0.14",
+    "reload": "^3.2.0",
     "rimraf": "^3.0.2",
+    "rmfr": "^2.0.0",
     "webfinger.js": "^2.7.1",
     "whatwg-fetch": "^3.6.2",
     "wtfnode": "^0.9.1",
