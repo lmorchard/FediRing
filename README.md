@@ -4,6 +4,10 @@ This is a half-baked idea to build a webring of verified fediverse profiles for 
 
 ## TODO
 
+- download and resize profile images locally during fetch rather than hotlinking
+
+- support organizing profiles by tags, build tag pages
+
 - accept import from
   - follows CSV export
   - Mastodon list CSV export

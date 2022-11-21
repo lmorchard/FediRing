@@ -67,6 +67,5 @@ export async function gotoProfileNext() {
 
 export async function gotoProfileAtIndex(index) {
   const profile = profiles.allProfiles[index];
-  console.log("GO", index, profile);
   window.location.href = profile.localProfileUrl;
 }

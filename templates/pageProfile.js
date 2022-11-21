@@ -49,9 +49,10 @@ export default ({ site = {}, page = {}, profile = {} }) => {
       </section>
       <section class="verification inset unknown">
         <p class="loading">🔃 Attempting to check verification status for this profile. 🔃</p>
-        <p class="unknown">❓ Verification status for this profile is unknown. ❓</p>
+        <p class="error">😞 Error encountered while checking verification status for this profile. 😞</p>
+        <p class="unknown">⚠️ Verification status for this profile is unknown. ⚠️</p>
         <p class="verified">✅ This profile has consented to verification with this page. ✅</p>
-        <p class="unverified">⚠️ This profile has not consented to verification with this page. ⚠️</p>
+        <p class="unverified">❗ This profile has not consented to verification with this page. ❗</p>
       </section>
       <section class="profile inset">
         <a class="icon" rel="me" href="${url}"><img src="${iconUrl}" /></a>

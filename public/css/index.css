@@ -11,6 +11,16 @@ body {
   --border-radius: 10px;
   --icon-bg-color: rgba(255, 255, 255, 1);
   --icon-border-color: rgba(192, 192, 192, 1);
+  --verification-verified-border: rgb(42, 136, 50);
+  --verification-verified-bg: rgb(30, 49, 31);
+  --verification-unverified-border: rgb(136, 42, 42);
+  --verification-unverified-bg: rgb(49, 32, 30);
+  --verification-unknown-border: rgb(136, 127, 42);
+  --verification-unknown-bg: rgb(49, 48, 30);
+  --verification-loading-border: rgb(216, 216, 216);
+  --verification-loading-bg: rgba(32, 32, 32, 1);
+  --verification-error-border: rgb(216, 216, 216);
+  --verification-error-bg: rgba(32, 32, 32, 1);
 }
 
 body.dark-theme {
@@ -28,6 +38,8 @@ body.dark-theme {
   --verification-unknown-bg: rgb(49, 48, 30);
   --verification-loading-border: rgb(216, 216, 216);
   --verification-loading-bg: rgba(32, 32, 32, 1);
+  --verification-error-border: rgb(216, 216, 216);
+  --verification-error-bg: rgba(32, 32, 32, 1);
 }
 
 body {
@@ -224,6 +236,16 @@ body.profile section.verification.loading {
   background-color: var(--verification-loading-bg);
 }
 body.profile section.verification.loading p.loading {
+  display: block;
+}
+
+body.profile section.verification.error {
+  display: block;
+  opacity: 0.5;
+  border-color: var(--verification-error-border);
+  background-color: var(--verification-error-bg);
+}
+body.profile section.verification.error p.error {
   display: block;
 }
 
