@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm run build && npx http-server build",
     "build": "node index.js fetch profiles.csv && node index.js build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "npx reload -d build",

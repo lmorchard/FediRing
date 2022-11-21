@@ -2,6 +2,7 @@ import { $, $$, metaContent } from "./dom.js";
 
 export async function init() {
   const currentProfileId = metaContent("current-profile-id");
+  if (!currentProfileId) return;
 
   try {
     setVerificationStatus("loading");

@@ -1,0 +1,18 @@
+{
+  "install": {
+    "include": [
+      "^package\\.json$",
+      "^\\.env$"
+    ]
+  },
+  "restart": {
+    "include": [
+      "^public/",
+      "\\.js$",
+      "\\.coffee$",
+      "\\.json",
+      "\\.csv"
+    ]
+  },
+  "throttle": 100
+}
