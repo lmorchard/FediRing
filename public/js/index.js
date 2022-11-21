@@ -1,14 +1,27 @@
-import { $, $$ } from "./dom.js";
-import PageTheme from "./pageTheme.js";
+import * as PageTheme from "./pageTheme.js";
+import * as ProfilesNavigation from "./profilesNavigation.js";
+import * as ProfileVerification from "./profileVerification.js";
 
-async function main() {
-  PageTheme.init();
+const modules = [PageTheme, ProfilesNavigation, ProfileVerification];
 
-  $(".toggle-theme").addEventListener("click", () => PageTheme.toggle());
+async function init() {
+  console.log(`LOAD "*", 8, 1`);
+
+  document.addEventListener("DOMContentLoaded", () =>
+    domready()
+      .then(() => console.log("READY."))
+      .catch((err) => console.error(err))
+  );
+
+  for (const module of modules) {
+    module.init();
+  }
 }
 
-document.addEventListener("DOMContentLoaded", () =>
-  main()
-    .then(() => console.log("READY."))
-    .catch((err) => console.error(err))
-);
+async function domready() {
+  for (const module of modules) {
+    module.domready();
+  }
+}
+
+init().catch((err) => console.error(err));

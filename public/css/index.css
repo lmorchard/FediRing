@@ -3,18 +3,98 @@
 }
 
 body {
-  --page-bg-color: #eee;
-  --page-text-color: #000;
+  --page-font: 15px sans-serif;
+  --page-bg-color: rgba(250, 250, 250, 1);
+  --page-text-color: rgba(8, 8, 8, 1);
+  --inset-bg-color: rgba(240, 240, 240, 1);
+  --inset2-bg-color: rgba(235, 235, 235, 1);
+  --border-radius: 10px;
+  --icon-bg-color: rgba(255, 255, 255, 1);
+  --icon-border-color: rgba(192, 192, 192, 1);
 }
 
 body.dark-theme {
-  --page-bg-color: #333;
-  --page-text-color: rgba(224, 224, 224, 1.0);
+  --page-bg-color: rgba(24, 24, 24, 1);
+  --page-text-color: rgba(224, 224, 224, 1);
+  --inset-bg-color: rgba(32, 32, 32, 1);
+  --inset2-bg-color: rgba(48, 48, 48, 1);
+  --icon-bg-color: rgba(255, 255, 255, 1);
+  --icon-border-color: rgba(0, 0, 0, 1);
+  --verification-verified-border: rgb(42, 136, 50);
+  --verification-verified-bg: rgb(30, 49, 31);
+  --verification-unverified-border: rgb(136, 42, 42);
+  --verification-unverified-bg: rgb(49, 32, 30);
+  --verification-unknown-border: rgb(136, 127, 42);
+  --verification-unknown-bg: rgb(49, 48, 30);
+  --verification-loading-border: rgb(216, 216, 216);
+  --verification-loading-bg: rgba(32, 32, 32, 1);
 }
 
 body {
+  font: var(--page-font);
   background-color: var(--page-bg-color);
   color: var(--page-text-color);
+}
+
+body.page-center {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+nav button.toggle-theme {
+  display: block;
+  position: absolute;
+  background-color: var(--inset-bg-color);
+  border-radius: var(--border-radius);
+  top: 20px;
+  right: 20px;
+  border: none;
+  padding: 4px;
+}
+
+nav button.toggle-theme span {
+  display: none;
+}
+body nav button.toggle-theme:after {
+  content: "☀️";
+}
+body.dark-theme nav button.toggle-theme:after {
+  content: "🌑";
+}
+
+.inset {
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--inset-bg-color);
+  border-radius: var(--border-radius);
+}
+
+.inset2 {
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--inset2-bg-color);
+  border-radius: var(--border-radius);
+}
+
+header h1 {
+  text-align: center;
+}
+
+section.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center;
+}
+
+section.intro p {
+  margin: 1em 10px;
 }
 
 ul.profiles {
@@ -22,17 +102,191 @@ ul.profiles {
   margin: 0;
   padding: 0;
   text-indent: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
 }
+
 ul.profiles li {
-  float: left;
-  border: 1px solid #ccc;
-  padding: 4px;
-  margin: 4px;
+  position: relative;
+  text-align: center;
+  flex-basis: 16%;
   flex-grow: 1;
-  flex-basis: 15%;
 }
-ul.profiles li img {
+
+ul.profiles li .icon {
   display: block;
+  text-align: center;
+  margin-bottom: 75px;
+  border-radius: var(--border-radius);
+}
+
+ul.profiles li .icon img {
   width: 128px;
-  height: 128px
+  height: 128px;
+  border: 2px solid var(--icon-border-color);
+  border-radius: var(--border-radius);
+  background: var(--icon-bg-color);
+}
+
+ul.profiles li .meta {
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  bottom: 10px;
+}
+
+ul.profiles li .meta > * {
+  padding: 0 10px;
+}
+
+ul.profiles li .name {
+  display: block;
+}
+
+ul.profiles li .address {
+  display: block;
+}
+
+body.profile section.profile {
+  position: relative;
+  min-height: 192px;
+}
+
+body.profile section.profile .image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+body.profile section.profile .icon img {
+  width: 192px;
+  height: 192px;
+  border: 2px solid var(--icon-border-color);
+  border-radius: var(--border-radius);
+  background: var(--icon-bg-color);
+}
+
+body.profile section.profile .summary {
+  display: block;
+}
+
+body.profile nav.controls {
+  display: flex;
+  flex-direction: row;
+}
+
+body.profile nav.controls.loading {
+  opacity: 0.5;
+}
+
+body.profile nav.controls.loading button {
+  pointer-events: none; 
+}
+
+body.profile nav.controls button {
+  padding: 0.5em 1em;
+  border: none;
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--inset2-bg-color);
+  border-radius: var(--border-radius);
+  color: var(--page-text-color);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+body.profile section.profile .name {
+  display: block;
+  font-size: 2em;
+}
+
+body.profile section.profile .address {
+  display: block;
+}
+
+body.profile section.verification {
+  display: none;
+  border: 2px solid #000;
+}
+body.profile section.verification p {
+  margin: 0.125em 10px;
+  display: none;
+}
+
+body.profile section.verification.loading {
+  display: block;
+  opacity: 0.5;
+  border-color: var(--verification-loading-border);
+  background-color: var(--verification-loading-bg);
+}
+body.profile section.verification.loading p.loading {
+  display: block;
+}
+
+body.profile section.verification.unknown {
+  display: block;
+  border-color: var(--verification-unknown-border);
+  background-color: var(--verification-unknown-bg);
+}
+body.profile section.verification.unknown p.unknown {
+  display: block;
+}
+
+body.profile section.verification.verified {
+  display: block;
+  border-color: var(--verification-verified-border);
+  background-color: var(--verification-verified-bg);
+}
+body.profile section.verification.verified p.verified {
+  display: block;
+}
+
+body.profile section.verification.unverified {
+  display: block;
+  border-color: var(--verification-unverified-border);
+  background-color: var(--verification-unverified-bg);
+}
+body.profile section.verification.unverified p.unverified {
+  display: block;
+}
+
+
+
+@media (min-width: 1440px) {
+}
+
+@media (min-width: 1200px) {
+  .inset {
+    max-width: 66%;
+  }
+}
+
+@media (min-width: 800px) {
+  body.profile section.profile .meta {
+    width: 480px;
+  }
+
+  body.profile section.profile .name {
+    font-size: 2.5em;
+  }
+
+  body.profile section.profile .address {
+    font-size: 1.25em;
+  }
+}
+
+@media (min-width: 600px) {
+  body.profile section.profile .icon {
+    display: block;
+    float: left;
+    padding-right: 20px;
+  }
+
+  body.profile section.profile .meta {
+    padding-left: 220px;
+  }
 }
