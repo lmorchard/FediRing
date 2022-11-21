@@ -9,11 +9,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "node index.js build",
+    "build": "node index.js fetch profiles.csv && node index.js build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "npx reload -d build",
     "watch:build": "onchange -v -i -p 1000 index.js 'public/**/*' 'lib/**/*.js' 'templates/**/*.js' -- npm run build",
     "dev": "npm-run-all -p server watch:build"
+  },
+  "glitch": {
+    "projectType": "generated_static"
   },
   "author": "",
   "license": "ISC",
