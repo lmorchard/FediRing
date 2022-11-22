@@ -6,7 +6,11 @@ This is a half-baked idea to build a webring of verified fediverse profiles for 
 
 ## TODO
 
+- build with Github Actions, publish to Github Pages
+
 - download and resize profile images locally during fetch rather than hotlinking
+
+- paginate profiles
 
 - support organizing profiles by tags, build tag pages
 
@@ -14,4 +18,3 @@ This is a half-baked idea to build a webring of verified fediverse profiles for 
   - follows CSV export
   - Mastodon list CSV export
   - Mastodon list API (?)
-
