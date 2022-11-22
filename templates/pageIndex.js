@@ -21,7 +21,7 @@ export default ({ site = {}, page = { title: "Profiles" }, profiles = [] }) =>
   );
 
 const htmlProfileCard = (profile) => {
-  const { localProfileUrl, webfingerAddress, name, icon } = profile;
+  const { localProfileUrl, webfingerAddress, rssFeedUrl, name, icon } = profile;
 
   const iconUrl = icon
     ? icon.url
@@ -33,7 +33,10 @@ const htmlProfileCard = (profile) => {
     <li class="profile inset2">
       <a class="icon" href="${localProfileUrl}"><img src="${iconUrl}" /></a>
       <div class="meta">
-        <a class="name" href="${localProfileUrl}">${name}</a>
+        <span class="name">
+          <a href="${localProfileUrl}">${name}</a>
+          <a class="rss" href="${rssFeedUrl}"><span>RSS Feed</span></a>
+        </span>
         <span class="address">${address}</span>
       </div>
     </li>

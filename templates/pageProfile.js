@@ -14,6 +14,7 @@ export default ({ site = {}, page = {}, profile = {} }) => {
     summary,
     attachment,
     published,
+    rssFeedUrl,
   } = profile;
 
   const iconUrl = icon
@@ -48,16 +49,19 @@ export default ({ site = {}, page = {}, profile = {} }) => {
         <p>${site.description}</p>
       </section>
       <section class="verification inset unknown">
-        <p class="loading">🔃 Attempting to check verification status for this profile. 🔃</p>
-        <p class="error">😞 Error encountered while checking verification status for this profile. 😞</p>
-        <p class="unknown">⚠️ Verification status for this profile is unknown. ⚠️</p>
-        <p class="verified">✅ This profile has consented to verification with this page. ✅</p>
-        <p class="unverified">❗ This profile has not consented to verification with this page. ❗</p>
+        <p class="loading">🔃 Attempting to check verification. 🔃</p>
+        <p class="error">😞 Error encountered while checking verification. 😞</p>
+        <p class="unknown">⚠️ Verification status is unknown. ⚠️</p>
+        <p class="verified">✅ Verification confirmed. ✅</p>
+        <p class="unverified">❗ This profile is not verified. ❗</p>
       </section>
       <section class="profile inset">
         <a class="icon" rel="me" href="${url}"><img src="${iconUrl}" /></a>
         <div class="meta">
-          <a class="name" rel="me" href="${url}">${name}</a>
+          <span class="name">
+            <a rel="me" href="${url}">${name}</a>
+            <a class="rss" href="${rssFeedUrl}"><span>RSS Feed</span></a>
+          </span>
           <span class="address">${address}</span>
           <div class="summary">${summaryHtml}</div>
         </div>
