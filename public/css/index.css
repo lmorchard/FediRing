@@ -109,6 +109,19 @@ section.intro p {
   margin: 1em 10px;
 }
 
+section.intro .opml span {
+  display: none;
+}
+
+section.intro a.opml:after {
+  display: inline-block;
+  content: "\00a0";
+  width: 36px;
+  height: 13px;
+  background-image: url(data:image/gif;base64,R0lGODlhJAAOANUAANVYBPHUwOFdBP/28P9yFeCngvfp4OVeBPRkBe3JsfBjBfr079+ecv+rc/fg0NByM+e9of/j0Z9BA//m1eWEQ/+FNP/awc5VBM1nI//t4eezkeirgtRhFPBsFOR3Lt1uJPDBofjXwf98JOZ7M/PCofqWU/CugiEOAfmygv/Rsv+PRP+0gn0zAv+aV8JQBD8aAf/IpP////9mAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAkAA4AAAbKwAlsSCwaj8ijpyVrOp/QqDTKYk6vWKq12YgNCDJVLEJYxWKVJuwcjlmmVWgoliBkYo+LOQZBEM4xLmIBAFJxTyILMQ4xDC4IZoofKwNngjGEhltOJWcBLgcyZhB0AySWg4VaUWIxBhxNZgUgZxiomKpQh04EAwOMGrExBSN0LreZq08pjQ9nFKLDAgguALcGGysrKk+7Ml2fByiuHbICTreAMSYKTt4yB9VNAi4uMvTnTvUyCvX++TLeZRlIRcKLgwgTKlzIcOGJIAA7);
+  background-repeat: no-repeat;
+}
+
 ul.profiles {
   list-style: none;
   margin: 0;

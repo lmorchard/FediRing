@@ -11,6 +11,7 @@ export default ({ site = {}, page = { title: "Profiles" }, profiles = [] }) =>
       </header>
       <section class="intro inset">
         <p>${site.description}</p>
+        <a href="${site.opmlUrl}" title="OPML export" class="opml"><span>OPML</span></a>
       </section>
       <section class="members inset">
         <ul class="profiles">
