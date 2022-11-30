@@ -48,13 +48,6 @@ export default ({ site = {}, page = {}, profile = {} }) => {
       <section class="intro inset">
         <p>${site.description}</p>
       </section>
-      <section class="verification inset unknown">
-        <p class="loading">🔃 Attempting to check verification. 🔃</p>
-        <p class="error">😞 Error encountered while checking verification. 😞</p>
-        <p class="unknown">⚠️ Verification status is unknown. ⚠️</p>
-        <p class="verified">✅ Verification confirmed. ✅</p>
-        <p class="unverified">❗ This profile is not verified. ❗</p>
-      </section>
       <section class="profile inset">
         <a class="icon" rel="me" href="${url}"><img src="${iconUrl}" /></a>
         <div class="meta">
@@ -65,6 +58,13 @@ export default ({ site = {}, page = {}, profile = {} }) => {
           <span class="address">${address}</span>
           <div class="summary">${summaryHtml}</div>
         </div>
+      </section>
+      <section class="verification inset unknown">
+        <p class="loading">🔃 Attempting to check verification. 🔃</p>
+        <p class="error">😞 Error encountered while checking verification. 😞</p>
+        <p class="unknown">⚠️ Verification status is unknown. ⚠️</p>
+        <p class="verified">✅ Verification confirmed. ✅</p>
+        <p class="unverified">❗ This profile is not verified. ❗</p>
       </section>
       ${navButtons("controls-bottom")}
     `
