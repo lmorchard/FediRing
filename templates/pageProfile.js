@@ -2,7 +2,8 @@ import { html, unescaped } from "../lib/html.js";
 import { webfingerAddressWithBreak } from "../lib/utils.js";
 import layoutPage from "./layoutPage.js";
 
-export default ({ site = {}, page = {}, profile = {} }) => {
+export default (context) => {
+  const { site = {}, page = {}, partials = {}, profile = {} } = context;
   const {
     id,
     webfingerAddress,
@@ -30,7 +31,7 @@ export default ({ site = {}, page = {}, profile = {} }) => {
 
   return layoutPage(
     {
-      site,
+      ...context,
       page: {
         ...page,
         className: "profile",
@@ -43,10 +44,10 @@ export default ({ site = {}, page = {}, profile = {} }) => {
     },
     html`
       <header>
-        <h1><a href="${site.url}/">${site.title}</a></h1>
+        <h1><a href="${site.url}/">${partials.siteTitle}</a></h1>
       </header>
       <section class="intro inset">
-        <p>${site.description}</p>
+        ${unescaped(partials.siteDescription)}
       </section>
       <section class="profile inset">
         <a class="icon" rel="me" href="${url}"><img src="${iconUrl}" /></a>
@@ -61,7 +62,9 @@ export default ({ site = {}, page = {}, profile = {} }) => {
       </section>
       <section class="verification inset unknown">
         <p class="loading">🔃 Attempting to check verification. 🔃</p>
-        <p class="error">😞 Error encountered while checking verification. 😞</p>
+        <p class="error">
+          😞 Error encountered while checking verification. 😞
+        </p>
         <p class="unknown">⚠️ Verification status is unknown. ⚠️</p>
         <p class="verified">✅ Verification confirmed. ✅</p>
         <p class="unverified">❗ This profile is not verified. ❗</p>

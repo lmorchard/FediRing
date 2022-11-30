@@ -2,15 +2,16 @@ import { html, unescaped } from "../lib/html.js";
 import { webfingerAddressWithBreak } from "../lib/utils.js";
 import layoutPage from "./layoutPage.js";
 
-export default ({ site = {}, page = { title: "Profiles" }, profiles = [] }) =>
-  layoutPage(
-    { site, page: { ...page, className: "profiles-index" } },
+export default (context) => {
+  const { site = {}, page = { title: "Profiles" }, partials = {}, profiles = [] } = context;
+  return layoutPage(
+    context,
     html`
       <header>
-        <h1>${site.title}</h1>
+        <h1>${partials.siteTitle}</h1>
       </header>
       <section class="intro inset">
-        <p>${site.description}</p>
+        ${unescaped(partials.siteDescription)}
         <a href="${site.opmlUrl}" title="OPML export" class="opml"><span>OPML</span></a>
       </section>
       <section class="members inset">
@@ -20,6 +21,7 @@ export default ({ site = {}, page = { title: "Profiles" }, profiles = [] }) =>
       </section>
     `
   );
+};
 
 const htmlProfileCard = (profile) => {
   const { localProfileUrl, webfingerAddress, rssFeedUrl, name, icon } = profile;

@@ -12,7 +12,7 @@
     "build": "node index.js fetch profiles.csv && node index.js build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "npx reload -d build",
-    "watch:build": "onchange -v -i -p 1000 index.js 'public/**/*' 'lib/**/*.js' 'templates/**/*.js' -- npm run build",
+    "watch:build": "onchange -v -i -p 1000 index.js 'public/**/*' 'lib/**/*.js' 'templates/**/*.js' 'content/**/*.md' -- node index.js build",
     "dev": "npm-run-all -p server watch:build"
   },
   "glitch": {
@@ -28,6 +28,7 @@
     "escape-html": "^1.0.3",
     "front-matter": "^4.0.2",
     "globby": "^13.1.2",
+    "gray-matter": "^4.0.3",
     "http-server": "^14.1.1",
     "merge": "^2.1.1",
     "mkdirp": "^1.0.4",

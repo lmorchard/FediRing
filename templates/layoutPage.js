@@ -1,13 +1,13 @@
 import { html } from "../lib/html.js";
 
 export default (
-  { site = {}, page = {}, head = "" },
+  { site = {}, partials = {}, page = {}, head = "" },
   content
 ) => html`
   <!DOCTYPE html>
   <html lang="en-us">
     <head>
-      <title>${page.title} - ${site.title}</title>
+      <title>${page.title} - ${partials.siteTitle}</title>
       <meta property="og:type" content="article" />
       <meta property="og:site_name" content="${site.title}" />
       <meta http-equiv="content-type" content="text/html; charset=utf-8" />
