@@ -1,3 +1,1 @@
-This is a hare-brained scheme to build webrings of verified fediverse profiles. 
-
-Use it for whatever you like!
+This is a hare-brained scheme to build linked rings of verified fediverse profiles.

@@ -22,9 +22,6 @@ export default (context, content) => {
       </head>
       <body class="page-center dark-theme ${page.className}">
         ${partialHeader(context)}
-        <nav>
-          <button class="toggle-theme"><span>toggle theme</span></button>
-        </nav>
         ${content}
       </body>
     </html>

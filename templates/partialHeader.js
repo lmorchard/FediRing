@@ -29,6 +29,9 @@ export default (context) => {
               ><span>OPML</span></a
             >
           </li>
+          <li>
+            <button class="toggle-theme"><span>toggle theme</span></button>
+          </li>
         </ul>
       </nav>
     </header>
