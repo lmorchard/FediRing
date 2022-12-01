@@ -1,19 +1,16 @@
 import { html, unescaped } from "../lib/html.js";
 import { webfingerAddressWithBreak } from "../lib/utils.js";
 import layoutPage from "./layoutPage.js";
+import partialHeader from "./partialHeader.js";
 
 export default (context) => {
-  const { site = {}, page = { title: "Profiles" }, partials = {}, profiles = [] } = context;
+  const { partials = {}, profiles = [] } = context;
   return layoutPage(
     context,
     html`
-      <header>
-        <h1>${partials.siteTitle}</h1>
-      </header>
-      <section class="intro inset">
+      <article class="intro inset">
         ${unescaped(partials.siteDescription)}
-        <a href="${site.opmlUrl}" title="OPML export" class="opml"><span>OPML</span></a>
-      </section>
+      </article>
       <section class="members inset">
         <ul class="profiles">
           ${profiles.filter((profile) => !!profile.name).map(htmlProfileCard)}

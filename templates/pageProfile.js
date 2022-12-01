@@ -43,12 +43,9 @@ export default (context) => {
       `,
     },
     html`
-      <header>
-        <h1><a href="${site.url}/">${partials.siteTitle}</a></h1>
-      </header>
-      <section class="intro inset">
+      <article class="intro inset">
         ${unescaped(partials.siteDescription)}
-      </section>
+      </article>
       <section class="profile inset">
         <a class="icon" rel="me" href="${url}"><img src="${iconUrl}" /></a>
         <div class="meta">

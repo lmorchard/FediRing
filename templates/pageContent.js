@@ -6,10 +6,7 @@ export default (context) => {
   return layoutPage(
     context,
     html`
-      <header>
-        <h1>${page.title} - ${partials.title}</h1>
-      </header>
-      <article class="content-page">${unescaped(content)}</article>
+      <article class="content-page inset">${unescaped(content)}</article>
     `
   );
 };
