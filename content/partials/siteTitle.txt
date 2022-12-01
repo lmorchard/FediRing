@@ -1,1 +1,1 @@
-Ringofedi Demo
+FediRing Demo

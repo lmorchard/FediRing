@@ -59,7 +59,7 @@ body.page-center {
   min-height: 100vh;
   flex-direction: column;
   justify-content: center;
-  align-items: center;/
+  align-items: center;
 }
 
 a {
@@ -101,7 +101,7 @@ body.dark-theme button.toggle-theme:after {
 
 header h1 {
   text-align: center;
-  margin: 0.25em;
+  margin: 0.5em;
 }
 
 header h1 a {
