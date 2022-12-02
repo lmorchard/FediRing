@@ -14,8 +14,8 @@ body {
   --icon-bg-color: rgba(255, 255, 255, 1);
   --icon-border-color: rgba(192, 192, 192, 1);
   --format-icon-text-color: rgba(255, 255, 255, 1);
-  --format-icon-top-left-border-color: rgba(192. 192, 192, 1);
-  --format-icon-bottom-right-border-color: rgba(32, 32, 32, 1);  
+  --format-icon-top-left-border-color: rgba(192 192, 192, 1);
+  --format-icon-bottom-right-border-color: rgba(32, 32, 32, 1);
   --verification-verified-border: rgb(42, 136, 50);
   --verification-verified-bg: rgb(175, 255, 179);
   --verification-unverified-border: rgb(136, 42, 42);
@@ -62,8 +62,10 @@ body.page-center {
   padding: 0;
   min-height: 100vh;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  /*
+  justify-content: center;
+  */
 }
 
 body.page-home {
@@ -151,12 +153,21 @@ article h1 {
   margin: 0.5em 0.5em;
 }
 
-section p, article p {
+section p,
+article p {
   margin: 0.5em em;
   padding: 0;
 }
 
-.format-icon:after {  
+details {
+  padding: 0.5em;
+}
+details summary {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.format-icon:after {
   display: inline-block;
   font-size: 10px;
   font-weight: bold;
@@ -173,7 +184,7 @@ section p, article p {
   border-top-color: var(--format-icon-top-left-border-color);
   border-bottom-color: var(--format-icon-bottom-right-border-color);
   border-left-color: var(--format-icon-top-left-border-color);
-  border-right-color: var(--format-icon-bottom-right-border-color);  
+  border-right-color: var(--format-icon-bottom-right-border-color);
 }
 
 header nav ul li a.csv:after {
@@ -183,7 +194,7 @@ header nav ul li a.csv:after {
 
 header nav ul li a.opml:after {
   content: "XML";
-  background-color: rgba(235, 100, 36, 1)
+  background-color: rgba(235, 100, 36, 1);
 }
 
 form.search {
@@ -191,7 +202,7 @@ form.search {
   text-align: center;
 }
 
-form.search input[name=search] {
+form.search input[name="search"] {
   width: 95%;
   padding: 0.5em;
   font-size: 1em;
@@ -307,7 +318,7 @@ body.page-profile nav.controls.loading {
 }
 
 body.page-profile nav.controls.loading button {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 body.page-profile nav.controls button {
@@ -349,7 +360,8 @@ body.page-profile section.verification {
   display: none;
   border: 2px solid #000;
 }
-body.page-profile section.verification p {
+body.page-profile section.verification > p,
+body.page-profile section.verification > details {
   margin: 0.125em 10px;
   display: none;
 }
@@ -397,7 +409,10 @@ body.page-profile section.verification.unverified {
   border-color: var(--verification-unverified-border);
   background-color: var(--verification-unverified-bg);
 }
-body.page-profile section.verification.unverified p.unverified {
+body.page-profile section.verification.unverified p.unverified,
+body.page-profile
+  section.verification.unverified
+  details.verification-instructions {
   display: block;
 }
 
@@ -410,7 +425,7 @@ body.page-profile section.verification.unverified p.unverified {
   }
 }
 
-@media (min-width: 800px) { 
+@media (min-width: 800px) {
   body.page-profile section.profile .meta {
     width: 480px;
   }
@@ -421,7 +436,7 @@ body.page-profile section.verification.unverified p.unverified {
 
   body.page-profile section.profile .address {
     font-size: 1.25em;
-  }  
+  }
 }
 
 @media (max-width: 800px) {

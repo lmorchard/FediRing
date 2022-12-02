@@ -5,6 +5,9 @@ import layoutPage from "./layoutPage.js";
 export default (context) => {
   const { site = {}, page = {}, partials = {}, profile = {} } = context;
   const {
+    siteTitle
+  } = partials;
+  const {
     id,
     webfingerAddress,
     url,
@@ -16,6 +19,7 @@ export default (context) => {
     attachment,
     published,
     rssFeedUrl,
+    localProfileUrl,
   } = profile;
 
   const iconUrl = icon
@@ -28,6 +32,11 @@ export default (context) => {
 
   // TODO: should probably sanitize this HTML?
   const summaryHtml = unescaped(summary);
+
+  // TODO: Generalize this variable substitution
+  const howToVerify = partials.howToVerify
+    .replace(/\$\{siteTitle\}/g, siteTitle)
+    .replace(/\$\{localProfileUrl\}/g, localProfileUrl);
 
   return layoutPage(
     {
@@ -63,6 +72,13 @@ export default (context) => {
         <p class="unknown">⚠️ Verification status is unknown. ⚠️</p>
         <p class="verified">✅ Verification confirmed. ✅</p>
         <p class="unverified">❗ This profile is not verified. ❗</p>
+      </section>
+
+      <section class="inset">
+        <details class="verification-instructions">
+          <summary>This is my profile, how do I verify it?</summary>
+          ${unescaped(howToVerify)}
+        </details>
       </section>
     `
   );
