@@ -187,7 +187,7 @@ header nav ul li a.opml:after {
 }
 
 form.search {
-  width: 66%;
+  width: 50%;
   text-align: center;
 }
 
@@ -410,7 +410,7 @@ body.page-profile section.verification.unverified p.unverified {
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 800px) { 
   body.page-profile section.profile .meta {
     width: 480px;
   }
@@ -421,6 +421,13 @@ body.page-profile section.verification.unverified p.unverified {
 
   body.page-profile section.profile .address {
     font-size: 1.25em;
+  }  
+}
+
+@media (max-width: 800px) {
+  form.search {
+    width: 90%;
+    text-align: center;
   }
 }
 
