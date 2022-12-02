@@ -4,9 +4,7 @@ import layoutPage from "./layoutPage.js";
 export default (context) => {
   const { page, partials, content } = context;
   return layoutPage(
-    context,
-    html`
-      <article class="content-page inset">${unescaped(content)}</article>
-    `
+    { ...context, page: { ...page, className: "page-content" } },
+    html` <article class="content-page inset">${unescaped(content)}</article> `
   );
 };

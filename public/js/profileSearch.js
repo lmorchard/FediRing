@@ -2,13 +2,15 @@ import { $, $$, metaContent } from "./dom.js";
 import { throttle } from "./utils.js";
 
 const SEARCH_THROTTLE = 250;
+const SEARCH_MISS_CLASSNAME = "search-miss";
 
-export async function init() {
-}
+export async function init() {}
 
 export async function domready() {
   $$("form.search").forEach((el) => {
-    el.addEventListener("submit", () => el.preventDefault());
+    el.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+    });
   });
 
   $$("form.search input[name=search]").forEach((el) => {
@@ -18,22 +20,28 @@ export async function domready() {
 
 const onSearchChange = throttle((ev) => {
   const searchText = ev.target.value;
-  console.log("SEARCH CHANGE", searchText);
 
-  $$("ul.profiles li.profile").forEach(profileEl => {
-    let hit = false;
-    if (searchText === "") {
-      hit = true;
-    } else {
-      $$(".searchable", profileEl).forEach(searchableEl => {
-        const content = "" + searchableEl.textContent;
-        if (content.includes(searchText)) {
-          hit = true;
-        }
-      });
+  $$("ul.profiles li.profile").forEach((profileEl) => {
+    if (!searchText) {
+      profileEl.classList.remove(SEARCH_MISS_CLASSNAME);
     }
 
-    profileEl.classList[hit ? "remove" : "add"]("search-miss");
-  });
+    // Look through all elements marked as searchable and look for a hit
+    let hit = false;
+    $$(".searchable", profileEl).forEach((searchableEl) => {
+      if (findSearchMatch(searchText, searchableEl.textContent)) {
+        hit = true;
+      }
+    });
 
+    // Show / hide profile based on search hit.
+    profileEl.classList[hit ? "remove" : "add"](SEARCH_MISS_CLASSNAME);
+  });
 }, SEARCH_THROTTLE);
+
+function findSearchMatch(searchText, content) {
+  // TODO: come up with a more interesting search algorithm
+  const lcContent = content.toLowerCase();
+  const lcSearchText = searchText.toLowerCase();
+  return lcContent.includes(lcSearchText);
+}

@@ -34,7 +34,7 @@ export default (context) => {
       ...context,
       page: {
         ...page,
-        className: "profile",
+        className: "page-profile",
         title: `${name} - ${webfingerAddress}`,
       },
       head: html`

@@ -66,6 +66,10 @@ body.page-center {
   align-items: center;
 }
 
+body.page-home {
+  justify-content: flex-start;
+}
+
 a {
   color: var(--page-link-color);
 }

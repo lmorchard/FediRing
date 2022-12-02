@@ -6,7 +6,7 @@ import partialHeader from "./partialHeader.js";
 export default (context) => {
   const { page = {}, partials = {}, profiles = [] } = context;
   return layoutPage(
-    { ...context, page: { ...page, title: "Home" } },
+    { ...context, page: { ...page, title: "Home", className: "page-home" } },
     html`
       <article class="intro inset">
         ${unescaped(partials.siteDescription)}
