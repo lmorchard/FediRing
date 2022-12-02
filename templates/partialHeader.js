@@ -14,19 +14,27 @@ export default (context) => {
       <h1><a href="${site.url}/">${partials.siteTitle}</a></h1>
       <nav>
         <ul>
-          <li>
-            <a href="${site.url}/">Home</a>
+          <li class="home-link">
+            <a href="${site.url}/">Home 🏠</a>
           </li>
           ${Object.entries(pages).map(
             ([name, item]) => html`
-              <li>
-                <a href="${site.url}/${name}.html">${item.data.title}</a>
+              <li class="page-link">
+                <a href="${site.url}/${name}.html">${item.data.title} 📃</a>
               </li>
             `
           )}
           <li>
-            <a href="${site.opmlUrl}" title="OPML export" class="opml"
-              ><span>OPML</span></a
+            <a href="${site.csvUrl}" title="CSV export" class="format-icon csv"
+              ><span>Profiles</span></a
+            >
+          </li>
+          <li>
+            <a
+              href="${site.opmlUrl}"
+              title="OPML export"
+              class="format-icon opml"
+              ><span>Feeds</span></a
             >
           </li>
           <li>

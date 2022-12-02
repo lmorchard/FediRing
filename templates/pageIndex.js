@@ -11,6 +11,9 @@ export default (context) => {
       <article class="intro inset">
         ${unescaped(partials.siteDescription)}
       </article>
+      <form class="search inset">
+        <input type="text" name="search" placeholder="search profiles" />
+      </form>
       <section class="members inset">
         <ul class="profiles">
           ${profiles.filter((profile) => !!profile.name).map(htmlProfileCard)}
@@ -34,10 +37,10 @@ const htmlProfileCard = (profile) => {
       <a class="icon" href="${localProfileUrl}"><img src="${iconUrl}" /></a>
       <div class="meta">
         <span class="name">
-          <a href="${localProfileUrl}">${name}</a>
+          <a class="searchable" href="${localProfileUrl}">${name}</a>
           <a class="rss" href="${rssFeedUrl}"><span>RSS Feed</span></a>
         </span>
-        <span class="address">${address}</span>
+        <span class="address searchable">${address}</span>
       </div>
     </li>
   `;

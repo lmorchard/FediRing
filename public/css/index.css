@@ -13,6 +13,9 @@ body {
   --border-radius: 10px;
   --icon-bg-color: rgba(255, 255, 255, 1);
   --icon-border-color: rgba(192, 192, 192, 1);
+  --format-icon-text-color: rgba(255, 255, 255, 1);
+  --format-icon-top-left-border-color: rgba(192. 192, 192, 1);
+  --format-icon-bottom-right-border-color: rgba(32, 32, 32, 1);  
   --verification-verified-border: rgb(42, 136, 50);
   --verification-verified-bg: rgb(175, 255, 179);
   --verification-unverified-border: rgb(136, 42, 42);
@@ -34,6 +37,7 @@ body.dark-theme {
   --inset2-bg-color: rgba(48, 48, 48, 1);
   --icon-bg-color: rgba(255, 255, 255, 1);
   --icon-border-color: rgba(0, 0, 0, 1);
+  --format-icon-text-color: rgba(255, 255, 255, 1);
   --verification-verified-border: rgb(42, 136, 50);
   --verification-verified-bg: rgb(30, 49, 31);
   --verification-unverified-border: rgb(136, 42, 42);
@@ -147,15 +151,43 @@ section p, article p {
   padding: 0;
 }
 
-header nav ul li a.opml:after {
+.format-icon:after {  
   display: inline-block;
-  content: "\00a0";
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  margin: -0px 8px -0px 0px;
   width: 36px;
   height: 13px;
-  margin: -3px 0px -3px 8px;
-  content: " "; 
-  background-image: url(data:image/gif;base64,R0lGODlhJAAOANUAANVYBPHUwOFdBP/28P9yFeCngvfp4OVeBPRkBe3JsfBjBfr079+ecv+rc/fg0NByM+e9of/j0Z9BA//m1eWEQ/+FNP/awc5VBM1nI//t4eezkeirgtRhFPBsFOR3Lt1uJPDBofjXwf98JOZ7M/PCofqWU/CugiEOAfmygv/Rsv+PRP+0gn0zAv+aV8JQBD8aAf/IpP////9mAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAkAA4AAAbKwAlsSCwaj8ijpyVrOp/QqDTKYk6vWKq12YgNCDJVLEJYxWKVJuwcjlmmVWgoliBkYo+LOQZBEM4xLmIBAFJxTyILMQ4xDC4IZoofKwNngjGEhltOJWcBLgcyZhB0AySWg4VaUWIxBhxNZgUgZxiomKpQh04EAwOMGrExBSN0LreZq08pjQ9nFKLDAgguALcGGysrKk+7Ml2fByiuHbICTreAMSYKTt4yB9VNAi4uMvTnTvUyCvX++TLeZRlIRcKLgwgTKlzIcOGJIAA7);
-  background-repeat: no-repeat;
+  padding: 1px 0px 1px 0px;
+  margin: 0px 0px 0px 8px;
+  background-color: rgba(32, 192, 32, 1);
+  color: var(--format-icon-text-color);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  border: 1px solid #fff;
+  border-top-color: var(--format-icon-top-left-border-color);
+  border-bottom-color: var(--format-icon-bottom-right-border-color);
+  border-left-color: var(--format-icon-top-left-border-color);
+  border-right-color: var(--format-icon-bottom-right-border-color);  
+}
+
+header nav ul li a.csv:after {
+  content: "CSV";
+  background-color: rgba(32, 128, 32, 1);
+}
+
+header nav ul li a.opml:after {
+  content: "XML";
+  background-color: rgba(235, 100, 36, 1)
+}
+
+form.search {
+  width: 90%;
+  text-align: center;
+}
+form.search input[name=search] {
+  width: 90%;
+  padding: 0.5em;
 }
 
 ul.profiles {
@@ -172,8 +204,11 @@ ul.profiles {
 ul.profiles li {
   position: relative;
   text-align: center;
-  flex-basis: 16%;
-  flex-grow: 1;
+  flex-basis: 19%;
+}
+
+ul.profiles li.search-miss {
+  display: none;
 }
 
 ul.profiles li .icon {
