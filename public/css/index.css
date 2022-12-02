@@ -123,6 +123,7 @@ header nav ul {
   margin: 0em;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -186,12 +187,18 @@ header nav ul li a.opml:after {
 }
 
 form.search {
-  width: 90%;
+  width: 66%;
   text-align: center;
 }
+
 form.search input[name=search] {
-  width: 90%;
+  width: 95%;
   padding: 0.5em;
+  font-size: 1em;
+  text-align: center;
+  background-color: transparent;
+  color: var(--page-text-color);
+  border-color: rgba(128, 128, 128, 0.5);
 }
 
 ul.profiles {
