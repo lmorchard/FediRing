@@ -43,9 +43,7 @@ export default (context) => {
       `,
     },
     html`
-      <article class="intro inset">
-        ${unescaped(partials.siteDescription)}
-      </article>
+      ${navButtons("controls-top")}
       <section class="profile inset">
         <a class="icon" rel="me" href="${url}"><img src="${iconUrl}" /></a>
         <div class="meta">
@@ -66,7 +64,6 @@ export default (context) => {
         <p class="verified">✅ Verification confirmed. ✅</p>
         <p class="unverified">❗ This profile is not verified. ❗</p>
       </section>
-      ${navButtons("controls-bottom")}
     `
   );
 };

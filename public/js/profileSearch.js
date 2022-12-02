@@ -1,7 +1,7 @@
 import { $, $$, metaContent } from "./dom.js";
 import { throttle } from "./utils.js";
 
-const SEARCH_THROTTLE = 250;
+const SEARCH_THROTTLE = 100;
 const SEARCH_MISS_CLASSNAME = "search-miss";
 
 export async function init() {}
@@ -28,11 +28,15 @@ const onSearchChange = throttle((ev) => {
 
     // Look through all elements marked as searchable and look for a hit
     let hit = false;
-    $$(".searchable", profileEl).forEach((searchableEl) => {
-      if (findSearchMatch(searchText, searchableEl.textContent)) {
+    for (const searchableEl of $$(".searchable", profileEl)) {
+      if (
+        findSearchMatch(searchText, searchableEl.textContent) ||
+        findSearchMatch(searchText, searchableEl.getAttribute("title"))
+      ) {
         hit = true;
+        break;
       }
-    });
+    }
 
     // Show / hide profile based on search hit.
     profileEl.classList[hit ? "remove" : "add"](SEARCH_MISS_CLASSNAME);
@@ -41,7 +45,7 @@ const onSearchChange = throttle((ev) => {
 
 function findSearchMatch(searchText, content) {
   // TODO: come up with a more interesting search algorithm
-  const lcContent = content.toLowerCase();
-  const lcSearchText = searchText.toLowerCase();
+  const lcContent = ("" + content).toLowerCase();
+  const lcSearchText = ("" + searchText).toLowerCase();
   return lcContent.includes(lcSearchText);
 }

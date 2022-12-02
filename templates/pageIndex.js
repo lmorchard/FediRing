@@ -40,7 +40,7 @@ const htmlProfileCard = (profile) => {
           <a class="searchable" href="${localProfileUrl}">${name}</a>
           <a class="rss" href="${rssFeedUrl}"><span>RSS Feed</span></a>
         </span>
-        <span class="address searchable">${address}</span>
+        <span class="address searchable" title="${webfingerAddress}">${address}</span>
       </div>
     </li>
   `;
