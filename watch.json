@@ -7,7 +7,8 @@
   },
   "restart": {
     "include": [
-      "^public/",
+      "^content/",
+      "^content-local/",
       "\\.js$",
       "\\.coffee$",
       "\\.json",
