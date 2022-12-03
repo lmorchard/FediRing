@@ -9,7 +9,10 @@ import mkdirp from "mkdirp";
 import rmfr from "rmfr";
 
 import config from "../lib/config.js";
-import { profileAddressToFilename as addressToFilename } from "../lib/utils.js";
+import {
+  profileAddressToFilename as addressToFilename,
+  cleanSingleLineContent,
+} from "../lib/utils.js";
 
 export default function init({ program }) {
   program.command("build").description("build static site").action(run);
@@ -160,7 +163,7 @@ const CONTENT_FILE_TYPES = [
 
 async function loadText(fn) {
   const content = await readFile(fn);
-  return { content: content.toString() };
+  return { content: cleanSingleLineContent(content.toString()) };
 }
 
 async function loadMarkdown(fn) {
