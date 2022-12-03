@@ -1,7 +1,7 @@
 {
-  "name": "fediverse-webrings",
+  "name": "fediring",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a static site generator that builds a linked ring of verified fediverse profiles.",
   "type": "module",
   "engines": {
     "node": "16.x"
@@ -18,8 +18,8 @@
   "glitch": {
     "projectType": "generated_static"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Les Orchard <me@lmorchard.com>",
+  "license": "MIT",
   "dependencies": {
     "commander": "^9.4.1",
     "commonmark": "^0.30.0",
