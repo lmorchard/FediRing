@@ -11,8 +11,8 @@ import merge from "merge";
 import { fetch } from "whatwg-fetch";
 import PQueue from "p-queue";
 
-import config from "../config.js";
-import { profileAddressToFilename } from "../utils.js";
+import config from "../lib/config.js";
+import { profileAddressToFilename } from "../lib/utils.js";
 
 export default function init({ program }) {
   program

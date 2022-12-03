@@ -9,8 +9,8 @@ import copy from "recursive-copy";
 import mkdirp from "mkdirp";
 import rmfr from "rmfr";
 
-import config from "../config.js";
-import { profileAddressToFilename as addressToFilename } from "../utils.js";
+import config from "../lib/config.js";
+import { profileAddressToFilename as addressToFilename } from "../lib/utils.js";
 
 export default function init({ program }) {
   program.command("build").description("build static site").action(run);

@@ -2,8 +2,8 @@
 import { Command } from "commander";
 
 import config, { init as initConfig } from "./lib/config.js";
-import initFetch from "./lib/cli/fetch.js";
-import initBuild from "./lib/cli/build.js";
+import initFetch from "./cli/fetch.js";
+import initBuild from "./cli/build.js";
 
 const program = new Command();
 const context = { program };
