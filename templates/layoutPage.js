@@ -16,7 +16,7 @@ export default (context, content) => {
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
         />
         <meta property="profiles-index" content="${site.url}/index.json" />
-        <link rel="stylesheet" href="${site.url}/css/index.css" />
+        <link rel="stylesheet" href="${site.url}/index.css" />
         <script type="module" src="${site.url}/js/index.js"></script>
         ${head}
       </head>
