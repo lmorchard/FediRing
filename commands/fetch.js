@@ -18,7 +18,7 @@ export default function init({ program }) {
   program
     .command("fetch")
     .description("fetch profiles")
-    .argument("<filename>", "name of the CSV file to fetch")
+    .argument("[filename]", "name of the CSV file to fetch")
     .option("-l, --limit <number>", "limit to <number> profiles in fetch")
     .option("-k, --keep", "do not delete downloaded profiles before fetching")
     .action(run);
@@ -27,15 +27,17 @@ export default function init({ program }) {
 async function run(filename, options) {
   const { limit, keep } = options;
 
+  const profilesCsvFn = filename || path.join(config.CONTENT_PATH, "profiles.csv");
+
   if (!keep) {
     await rmfr(profilesPath());
   }
   await mkdirp(profilesPath());
-  await copy(filename, path.join(config.DATA_PATH, "index.csv"), {
+  await copy(profilesCsvFn, path.join(config.DATA_PATH, "index.csv"), {
     overwrite: true,
   });
 
-  let allProfiles = await loadCSV(filename);
+  let allProfiles = await loadCSV(profilesCsvFn);
   allProfiles.shift();
   if (limit) {
     allProfiles = allProfiles.slice(0, limit);

@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npx http-server build",
-    "build": "node index.js fetch content/profiles.csv && node index.js build",
+    "build": "node index.js fetch && node index.js build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "npx reload -d build",
     "watch:build": "onchange -v -i -p 1000 index.js 'public/**/*' 'lib/**/*.js' 'templates/**/*.js' 'content/**/*.{txt,md}' -- node index.js build",
