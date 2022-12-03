@@ -15,6 +15,14 @@ Most everything you want to customize lives in the `content` directory. You can 
 1. Edit `content-local/profiles.csv` to manage the profiles in your ring.
 1. Explore `content-local` to see what else you can change
 
+On a remixed Glitch project, you can do all the above in the terminal like so:
+
+```
+cp -r content content-local
+cp .env-example .env
+refresh
+```
+
 ## Updates
 
 This project will probably get updated often at this git repository:

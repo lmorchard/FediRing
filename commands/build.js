@@ -16,26 +16,20 @@ export default function init({ program }) {
 }
 
 async function run() {
+  const context = {
+    site: {
+      title: config.SITE_TITLE,
+      description: config.SITE_DESCRIPTION,
+      url: config.SITE_URL,
+      opmlUrl: `${config.SITE_URL}/index.opml`,
+      csvUrl: `${config.SITE_URL}/index.csv`,
+    },
+    profiles: await loadProfiles(),
+    partials: await loadContentFiles("partials"),
+    pages: await loadContentFiles("pages", true),
+  };
+
   const templates = await loadTemplates();
-
-  const site = {
-    title: config.SITE_TITLE,
-    description: config.SITE_DESCRIPTION,
-    url: config.SITE_URL,
-    opmlUrl: `${config.SITE_URL}/index.opml`,
-    csvUrl: `${config.SITE_URL}/index.csv`,
-  };
-
-  const profiles = await loadProfiles({ site });
-  const partials = await loadContentFiles("partials");
-  const pages = await loadContentFiles("pages", true);
-
-  const pageContext = {
-    site,
-    profiles,
-    partials,
-    pages,
-  };
 
   await rmfr(config.BUILD_PATH);
   await mkdirp(config.BUILD_PATH);
@@ -46,19 +40,19 @@ async function run() {
     overwrite: true,
   });
 
-  await buildContentPages(pageContext, templates);
+  await buildContentPages(context, templates);
 
   await writeFile(
     path.join(config.BUILD_PATH, "index.html"),
-    templates.pageIndex(pageContext)()
+    templates.pageIndex(context)()
   );
 
   await writeFile(
     path.join(config.BUILD_PATH, "index.opml"),
-    templates.exportOpml(pageContext)()
+    templates.exportOpml(context)()
   );
 
-  const minimizedProfiles = profiles.map(
+  const minimizedProfiles = context.profiles.map(
     ({ webfingerAddress, name, url, localProfileUrl }) => ({
       url,
       name,
@@ -74,12 +68,12 @@ async function run() {
 
   await mkdirp(profilePagesPath());
 
-  for (const profile of profiles) {
+  for (const profile of context.profiles) {
     const pagePath = profilePagePath(profile);
     await mkdirp(pagePath);
     await writeFile(
       path.join(pagePath, "index.html"),
-      templates.pageProfile({ ...pageContext, profile })()
+      templates.pageProfile({ ...context, profile })()
     );
   }
 }
@@ -113,7 +107,7 @@ const profilePagePath = (profile) => {
   return path.join(profilePagesPath(), addressToFilename(webfingerAddress));
 };
 
-async function loadProfiles({ site }) {
+async function loadProfiles() {
   const profiles = [];
   const files = globbyStream(`${profilesPath()}/*.yaml`);
 
@@ -124,7 +118,7 @@ async function loadProfiles({ site }) {
 
     profiles.push({
       ...profile,
-      localProfileUrl: `${site.url}/profiles/${addressToFilename(
+      localProfileUrl: `${config.SITE_URL}/profiles/${addressToFilename(
         profile.webfingerAddress
       )}/index.html`,
       rssFeedUrl: `${profile.url}.rss`,
