@@ -1,5 +1,5 @@
-import { html, unescaped } from "../lib/html.js";
-import { webfingerAddressWithBreak } from "../lib/utils.js";
+import { html, unescaped } from "../../lib/html.js";
+import { webfingerAddressWithBreak } from "../../lib/utils.js";
 import layoutPage from "./layoutPage.js";
 
 export default (context) => {

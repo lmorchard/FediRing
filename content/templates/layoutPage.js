@@ -1,4 +1,4 @@
-import { html } from "../lib/html.js";
+import { html } from "../../lib/html.js";
 import partialHeader from "./partialHeader.js";
 
 export default (context, content) => {

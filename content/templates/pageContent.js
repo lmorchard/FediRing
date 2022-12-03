@@ -1,4 +1,4 @@
-import { html, unescaped } from "../lib/html.js";
+import { html, unescaped } from "../../lib/html.js";
 import layoutPage from "./layoutPage.js";
 
 export default (context) => {

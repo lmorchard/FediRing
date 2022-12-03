@@ -1,6 +1,6 @@
-import { html } from "../lib/html.js";
+import { html } from "../../lib/html.js";
 
-export default ({ site = {}, page = { title: "Profiles" }, profiles = [] }) => {
+export default ({ site = {}, profiles = [] }) => {
   return html`
     <?xml version="1.0" encoding="utf-8"?>
     <opml version="1.0">

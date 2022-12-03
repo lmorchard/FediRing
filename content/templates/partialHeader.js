@@ -1,4 +1,4 @@
-import { html } from "../lib/html.js";
+import { html } from "../../lib/html.js";
 
 export default (context) => {
   const { site = {}, pages = {}, partials = {} } = context;

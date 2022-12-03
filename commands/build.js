@@ -1,7 +1,6 @@
 import * as path from "path";
 import { writeFile, readFile } from "fs/promises";
-import { parse as yamlParse, stringify as yamlStringify } from "yaml";
-import { escape as qsEscape } from "querystring";
+import { parse as yamlParse } from "yaml";
 import { globbyStream } from "globby";
 import matter from "gray-matter";
 import * as commonmark from "commonmark";
@@ -26,7 +25,7 @@ async function run() {
     opmlUrl: `${config.SITE_URL}/index.opml`,
     csvUrl: `${config.SITE_URL}/index.csv`,
   };
-  
+
   const profiles = await loadProfiles({ site });
   const partials = await loadContentFiles("partials");
   const pages = await loadContentFiles("pages", true);
@@ -40,7 +39,9 @@ async function run() {
 
   await rmfr(config.BUILD_PATH);
   await mkdirp(config.BUILD_PATH);
-  await copy(config.PUBLIC_PATH, "build", { overwrite: true });
+  await copy(path.join(config.CONTENT_PATH, "public"), config.BUILD_PATH, {
+    overwrite: true,
+  });
   await copy(path.join(config.DATA_PATH, "index.csv"), "build/index.csv", {
     overwrite: true,
   });
@@ -91,7 +92,9 @@ const TEMPLATE_NAMES = [
 ];
 
 async function loadTemplates() {
-  const templatesPath = path.resolve(config.TEMPLATES_PATH);
+  const templatesPath = path.resolve(
+    path.join(config.CONTENT_PATH, "templates")
+  );
   const templates = {};
   for (const name of TEMPLATE_NAMES) {
     const templatePath = path.join(templatesPath, `${name}.js`);

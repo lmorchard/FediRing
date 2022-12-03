@@ -1,9 +1,9 @@
-import { html, unescaped } from "../lib/html.js";
+import { html, unescaped } from "../../lib/html.js";
 import {
   webfingerAddressWithBreak,
   replaceVariablesInContent,
   mapObjectValues,
-} from "../lib/utils.js";
+} from "../../lib/utils.js";
 import layoutPage from "./layoutPage.js";
 
 export default (context) => {
