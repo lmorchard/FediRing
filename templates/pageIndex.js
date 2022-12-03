@@ -1,7 +1,6 @@
 import { html, unescaped } from "../lib/html.js";
 import { webfingerAddressWithBreak } from "../lib/utils.js";
 import layoutPage from "./layoutPage.js";
-import partialHeader from "./partialHeader.js";
 
 export default (context) => {
   const { page = {}, partials = {}, profiles = [] } = context;

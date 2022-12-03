@@ -1,13 +1,7 @@
-import { html, unescaped } from "../lib/html.js";
+import { html } from "../lib/html.js";
 
 export default (context) => {
-  const {
-    site = {},
-    pages = {},
-    page = { title: "Profiles" },
-    partials = {},
-    profiles = [],
-  } = context;
+  const { site = {}, pages = {}, partials = {} } = context;
 
   return html`
     <header>

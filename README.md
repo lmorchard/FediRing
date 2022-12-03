@@ -14,11 +14,8 @@ This is a half-baked idea to build a linked ring of verified fediverse profiles.
 
 - support organizing profiles by tags, build tag pages
 
-- export from mastodon list API (like blogrolls?)
-
 - accept import from
-  - URL to CSV resource
-  - Mastodon list CSV export
+  - URL to CSV resource maintained by separate tool
   - Mastodon list API (?)
 
 - activitypub bot
