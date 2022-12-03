@@ -1,12 +1,15 @@
 import { html, unescaped } from "../lib/html.js";
-import { webfingerAddressWithBreak } from "../lib/utils.js";
+import {
+  webfingerAddressWithBreak,
+  replaceVariablesInContent,
+  mapObjectValues,
+} from "../lib/utils.js";
 import layoutPage from "./layoutPage.js";
 
 export default (context) => {
   const { site = {}, page = {}, partials = {}, profile = {} } = context;
-  const {
-    siteTitle
-  } = partials;
+  const { url: siteUrl } = site;
+  const { siteTitle } = partials;
   const {
     id,
     webfingerAddress,
@@ -33,10 +36,13 @@ export default (context) => {
   // TODO: should probably sanitize this HTML?
   const summaryHtml = unescaped(summary);
 
-  // TODO: Generalize this variable substitution
-  const howToVerify = partials.howToVerify
-    .replace(/\$\{siteTitle\}/g, siteTitle)
-    .replace(/\$\{localProfileUrl\}/g, localProfileUrl);
+  const { howToVerify, howToOptOut } = mapObjectValues(partials, (content) =>
+    replaceVariablesInContent(content, {
+      siteTitle,
+      siteUrl,
+      localProfileUrl,
+    })
+  );
 
   return layoutPage(
     {
@@ -78,6 +84,13 @@ export default (context) => {
         <details class="verification-instructions">
           <summary>This is my profile, how do I verify it?</summary>
           ${unescaped(howToVerify)}
+        </details>
+      </section>
+
+      <section class="inset">
+        <details class="verification-instructions">
+          <summary>This is my profile, how do I remove it?</summary>
+          ${unescaped(howToOptOut)}
         </details>
       </section>
     `
