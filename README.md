@@ -12,7 +12,7 @@ Most everything you want to customize lives in the `content` directory. You can 
 
 1. Copy everything in `content` to `content-local`
 1. Copy `.env-example` to `.env`
-1. Edit `content-local/profiles.csv` to manage the profiles in your ring.
+1. Edit `content-local/profiles.csv` to manage the profiles in your ring. (You can also use a Google Sheet for this - see hints & tips, below.)
 1. Explore `content-local` to see what else you can change
 
 On a remixed Glitch project, you can do all the above in the terminal like so:
@@ -37,6 +37,10 @@ That said, you will probably want to compare your copy of `content-local` with t
 
 - If you do something fun with this, [let me know](https://lmorchard.com).
 
+- You can manage profile addresses in a Google Sheet. Use the File > Share > "Publish to web" menu command to publish your sheet in CSV format. Then, use the given URL as the value of the `FETCH_CSV_URL` env variable.
+
+- Check out `lib/config.js` to see what other nvironment variables are supported for configuration.
+
 - You can put whatever markdown files you want in `content/pages`.
 
   Those files will be turned into HTML pages and included in the top navigation bar of the site. Be sure to include some YAML frontmatter to specify a title - see `about.md` for an example.
@@ -56,7 +60,6 @@ MIT license. Do whatever you want with this thing. Don't blame me if anything go
 - support organizing profiles by tags, build tag pages
 
 - accept import from
-  - URL to CSV resource maintained by separate tool
   - Mastodon list API (?)
 
 - activitypub bot

@@ -1,5 +1,6 @@
 import { parse as csvParse } from "csv-parse";
 import * as fs from "fs";
+import { PassThrough, Readable } from "stream";
 import { writeFile, readFile } from "fs/promises";
 import * as path from "path";
 import { WebFinger } from "webfinger.js";
@@ -9,6 +10,7 @@ import rmfr from "rmfr";
 import copy from "recursive-copy";
 import merge from "merge";
 import { fetch } from "whatwg-fetch";
+// import axios from "axios";
 import PQueue from "p-queue";
 
 import config from "../lib/config.js";
@@ -18,26 +20,30 @@ export default function init({ program }) {
   program
     .command("fetch")
     .description("fetch profiles")
-    .argument("[filename]", "name of the CSV file to fetch")
+    .option(
+      "-f, --file <filename>",
+      "fetch the profile list from a file in CSV format"
+    )
+    .option(
+      "-f, --url <url>",
+      "fetch the profile list from a URL in CSV format"
+    )
     .option("-l, --limit <number>", "limit to <number> profiles in fetch")
     .option("-k, --keep", "do not delete downloaded profiles before fetching")
     .action(run);
 }
 
-async function run(filename, options) {
+async function run(options) {
   const { limit, keep } = options;
 
-  const profilesCsvFn = filename || path.join(config.CONTENT_PATH, "profiles.csv");
-
-  if (!keep) {
-    await rmfr(profilesPath());
-  }
+  if (!keep) await rmfr(profilesPath());
   await mkdirp(profilesPath());
-  await copy(profilesCsvFn, path.join(config.DATA_PATH, "index.csv"), {
-    overwrite: true,
-  });
 
-  let allProfiles = await loadCSV(profilesCsvFn);
+  let { raw: csvContent, data: allProfiles } = await fetchCSV(options);
+
+  await writeFile(path.join(config.DATA_PATH, "index.csv"), csvContent);
+
+  // HACK: first line is column titles - maybe not always?
   allProfiles.shift();
   if (limit) {
     allProfiles = allProfiles.slice(0, limit);
@@ -73,6 +79,49 @@ async function run(filename, options) {
   // HACK: force exit, because webfinger doesn't cancel its abort timers
   // https://github.com/silverbucket/webfinger.js/blob/master/src/webfinger.js#L159
   process.exit(0);
+}
+
+async function fetchCSV(options) {
+  const { file, url } = options;
+
+  let readStream;
+  const fetchURL = url || config.FETCH_CSV_URL;
+  if (fetchURL) {
+    console.log("Fetching CSV URL", fetchURL);
+    /* TODO: figure out why this option isn't actually giving me a stream in response.data?
+    const response = await axios(fetchURL, { responseType: "stream" });
+    readStream = response.data;
+    */
+    // HACK: shove the CSV resource into a Readable stream.
+    const response = await fetch(fetchURL);
+    readStream = new Readable()
+    readStream.push(await response.text());
+    readStream.push(null);
+  } else {
+    const filename = file || config.FETCH_CSV_FILENAME;
+    if (filename) {
+      console.log("Fetching CSV file", filename);
+      readStream = fs.createReadStream(filename);
+    }
+  }
+
+  if (!readStream) return [];
+
+  const chunks = [];
+  const capture = new PassThrough();
+  capture.on("data", (chunk) => chunks.push(chunk));
+
+  const data = await new Promise((resolve, reject) => {
+    const parser = csvParse({}, (err, data) => {
+      if (err) reject(err);
+      else resolve(data);
+    });
+    readStream.pipe(capture).pipe(parser);
+  });
+
+  const raw = chunks.map((chunk) => chunk.toString()).join("");
+
+  return { data, raw };
 }
 
 async function fetchProfile(addr) {
@@ -116,15 +165,6 @@ async function fetchProfile(addr) {
 }
 
 const profilesPath = () => path.join(config.DATA_PATH, "profiles");
-
-const loadCSV = (filename) =>
-  new Promise((resolve, reject) => {
-    const parser = csvParse({}, (err, data) => {
-      if (err) reject(err);
-      else resolve(data);
-    });
-    fs.createReadStream(filename).pipe(parser);
-  });
 
 const fetchWebfinger = (
   addr,
