@@ -12,11 +12,11 @@ Most everything you want to customize lives in the `content` directory. That's a
 
 ## Updates
 
-This project will probably get updated often at this git repository:
+This project will probably get updated often, here on GitHub:
 
 - https://github.com/lmorchard/FediRing
 
-However, any changes in the `content` directory will clobber your own customizaions. The good news is that you can switch to using a local copy with these steps:
+However, any changes in the `content` directory will clobber your own customizations. The good news is that you can switch to using a local copy with these steps:
 
 1. Copy everything in `content` to `content-local`
 1. Copy `.env-example` to `.env` 
@@ -24,7 +24,7 @@ However, any changes in the `content` directory will clobber your own customizai
 1. Edit `content-local/profiles.csv` to manage the profiles in your ring.
 1. Explore `content-local` to see what else you can change
 
-On a remixed Glitch project, you can do all the above in the terminal like so:
+On a remixed Glitch project, the following commands in a terminal should do the trick:
 
 ```
 cp -r content content-local
@@ -40,7 +40,7 @@ That said, you will probably want to compare your copy of `content-local` with t
 
 - You can manage profile addresses in a Google Sheet. Use the File > Share > "Publish to web" menu command to publish your sheet in CSV format. Then, use the given URL as the value of the `FETCH_CSV_URL` env variable.
 
-- Check out `lib/config.js` to see what other nvironment variables are supported for configuration.
+- Check out `lib/config.js` to see what other environment variables are supported for configuration.
 
 - You can put whatever markdown files you want in `content/pages`. Those files will be published as HTML pages and included in the top navigation bar of the site. Be sure to include some YAML frontmatter to specify a title - see `about.md` for an example.
 
@@ -60,8 +60,7 @@ MIT license. Do whatever you want with this thing. Don't blame me if anything go
 
 - support organizing profiles by tags, build tag pages
 
-- accept import from
-  - Mastodon list API (?)
+- sync profile list with Mastodon list API
 
 - activitypub bot
   - accept DMs for application
