@@ -77,6 +77,10 @@ a:visited {
   color: var(--page-visited-color);
 }
 
+.glitchButton, .glitchButton a, .glitchButton a:visited {
+  color: rgba(0, 0, 0, 1);
+}
+
 article {
   padding-left: 1.5em !important;
   padding-right: 1.5em !important;

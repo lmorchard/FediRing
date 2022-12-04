@@ -94,11 +94,14 @@ async function fetchCSV(options) {
     */
     // HACK: shove the CSV resource into a Readable stream.
     const response = await fetch(fetchURL);
-    readStream = new Readable()
+    readStream = new Readable();
     readStream.push(await response.text());
     readStream.push(null);
   } else {
-    const filename = file || config.FETCH_CSV_FILENAME;
+    const filename =
+      file ||
+      config.FETCH_CSV_FILENAME ||
+      path.join(config.CONTENT_PATH, "profiles.csv");
     if (filename) {
       console.log("Fetching CSV file", filename);
       readStream = fs.createReadStream(filename);
