@@ -8,7 +8,10 @@ export default (context, content) => {
     <html lang="en-us">
       <head>
         <title>${page.title} - ${partials.siteTitle}</title>
-        <meta property="og:site_name" content="${page.title} - ${partials.siteTitle}" />
+        <meta
+          property="og:site_name"
+          content="${page.title} - ${partials.siteTitle}"
+        />
         <meta property="og:type" content="article" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta
@@ -21,8 +24,15 @@ export default (context, content) => {
         ${head}
       </head>
       <body class="page-center dark-theme ${page.className}">
-        ${partialHeader(context)}
-        ${content}
+        ${partialHeader(context)} ${content}
+        ${site.isGlitch &&
+        html`
+          <div
+            class="glitchButton position-x-right position-y-top"
+            style="z-index: 5;"
+          ></div>
+          <script src="https://button.glitch.me/button.js"></script>
+        `}
       </body>
     </html>
   `;

@@ -26,6 +26,9 @@ async function run() {
       url: config.SITE_URL,
       opmlUrl: `${config.SITE_URL}/index.opml`,
       csvUrl: `${config.SITE_URL}/index.csv`,
+      // All three of these env vars are a pretty good signal we're on Glitch
+      isGlitch:
+        !!config.PROJECT_DOMAIN && !!config.PROJECT_NAME && !!config.PROJECT_ID,
     },
     profiles: await loadProfiles(),
     partials: await loadContentFiles("partials"),
