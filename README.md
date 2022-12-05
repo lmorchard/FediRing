@@ -49,20 +49,3 @@ That said, you will probably want to compare your copy of `content-local` with t
 ## License
 
 MIT license. Do whatever you want with this thing. Don't blame me if anything goes wrong.
-
-## TODO
-
-- build with Github Actions, publish to Github Pages
-
-- download and resize profile images locally during fetch rather than hotlinking
-
-- paginate profiles
-
-- support organizing profiles by tags, build tag pages
-
-- sync profile list with Mastodon list API
-
-- activitypub bot
-  - accept DMs for application
-  - web UI or DMs for management?
-  - serve up CSV at URL to decouple bot from static site
