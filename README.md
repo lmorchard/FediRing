@@ -6,6 +6,8 @@ This is a static site generator that builds a linked ring of verified fediverse 
 
 It's pretty hacky, but it might be fun to play with.
 
+Inspired by both ye olde [Webrings](https://en.wikipedia.org/wiki/Webring) and ye newe [PressCheck.org](https://www.presscheck.org/) for building a discoverable collection of verified fediverse profiles.
+
 ## Customization
 
 Most everything you want to customize lives in the `content` directory. That's a good place to start making this thing your own.
