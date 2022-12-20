@@ -38,6 +38,18 @@ After the above steps, you should be able to import updates without overwriting 
 
 That said, you will probably want to compare your copy of `content-local` with the updated `content` to see if you want to pull in any changes by hand.
 
+## Pushing updates via git
+
+You can [use git to push updates into Glitch](https://support.glitch.com/t/code-locally-push-to-glitch-via-git/4227/10?u=lmorchard) - e.g. for `content/profiles.csv` or other files. To prepare your project to rebuild on git push, run these commands in the Glitch terminal:
+
+```
+git config receive.denyCurrentBranch updateInstead
+echo '/usr/bin/refresh' > .git/hooks/post-receive
+chmod +x .git/hooks/post-receive 
+```
+
+(TODO: elaborate more on this)
+
 ## Hints & Tips
 
 - You can manage profile addresses in a Google Sheet. Use the File > Share > "Publish to web" menu command to publish your sheet in CSV format. Then, use the given URL as the value of the `FETCH_CSV_URL` env variable.
